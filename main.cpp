@@ -13,6 +13,8 @@ int menit = 0, jam = 0, detik = 0;
 int key = 0;
 int Letak_X_easy = 5;
 int Letak_Y_easy = 3;
+vector<string>highscoreName;
+vector<int>highscorePoint;
 
 void border_minesweeper_easy() {
 	system("cls");
@@ -26,9 +28,6 @@ void border_minesweeper_easy() {
 		{'+','+','+','+','+','+','+','+','+','+',' ',' ',' ',' ',' ',' ',' ',' ',' '},
 		{'+','+','+','+','+','+','+','+','+','+',' ',' ',' ',' ',' ',' ',' ',' ',' '},
 	};
-
-
-
 	do {
 		detik++;
 		if (detik >= 60) {
@@ -36,7 +35,6 @@ void border_minesweeper_easy() {
 			menit++;
 			if (menit == 60) {
 				menit = 0;
-
 				jam++;
 				if (jam == 24) {
 					jam = 0;
@@ -89,7 +87,7 @@ void border_minesweeper_easy() {
 					Letak_Y_easy++;
 				}
 			}
-			else if (tombolgerak == '\r') {
+			else if (tombolgerak == 'r') {
 					border_easy[Letak_Y_easy][Letak_X_easy] = ' ';
 			}
 		}
@@ -126,7 +124,6 @@ void border_minesweeper_medium() {
 			menit++;
 			if (menit == 60) {
 				menit = 0;
-
 				jam++;
 				if (jam == 24) {
 					jam = 0;
@@ -201,7 +198,6 @@ void border_minesweeper_hard() {
 		border_hard[1][30] = '0' + menit % 10; // satuan menit
 		border_hard[1][32] = '0' + detik / 10; // puluhan detik
 		border_hard[1][33] = '0' + detik % 10; // satuan detik
-
 		system("cls");
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 34; j++) {
@@ -209,30 +205,23 @@ void border_minesweeper_hard() {
 			}
 			cout << endl;
 		}
-
 		Sleep(1000);
 	} while (key != 27);
 
 }
-
-
-
-
-
 
 int main() {
 
 	int mode, input;
 	int play;
 	do {
+        system("cls");
 		cout << "=== Welcome To Game Mine Sweeper === \n";
 		cout << "1. Play \n";
 		cout << "2. HigScore \n";
 		cout << "0. Exit \n";
 		cout << ">> ";
 		cin >> input;
-
-
 		if (input == 1) {
 			system("cls");
 			cout << "=== Mine Sweeper === \n";
@@ -241,36 +230,30 @@ int main() {
 			cout << "3. Mode Hard \n";
 			cout << ">> ";
 			cin >> mode;
+            cout << "Username : ";
+            cin >> ussernameinput;
 			cout << endl;
-
-			if (mode == 1) {
-				cout << "Ussername : ";
-				cin >> ussernameinput;
+			switch(mode){
+                case 1:
 				border_minesweeper_easy();
-			}
-			else if (mode == 2) {
-				cout << "Ussername : ";
-				cin >> ussernameinput;
+				break;
+                case 2:
 				border_minesweeper_medium();
-			}
-			else if (mode == 3) {
-				cout << "Ussername : ";
-				cin >> ussernameinput;
+				break;
+                case 3:
 				border_minesweeper_hard();
+				break;
+				default:
+                cout << "INPUTAN SALAH!" << endl;
 			}
-
-
-
 		}
 		else if (input == 2) {
 			cout << "=== HighScore === \n";
 		}
 		else {
-			cout << "Sayonara \n";
+			cout << "Sayonara";
 			break;
 		}
-
-
 	} while (true);
 
 	return 0;
